@@ -20,6 +20,7 @@
     // Do any additional setup after loading the view.
     
     _management = [Management new];
+    //_management.accoutMutableArray = [NSMutableArray new];
     
     self.view.backgroundColor = [UIColor colorWithRed:0.96 green:1.00 blue:0.00 alpha:1.00];
     //输入框
@@ -28,11 +29,12 @@
     
     _textFieldPassword = [[UITextField alloc] initWithFrame:CGRectMake(40, 350, 340, 40)];
     _textFieldPassword.backgroundColor = [UIColor whiteColor];
+    _textFieldPassword.secureTextEntry = YES;
     
     [self.view addSubview:_textFieldUserName];
     [self.view addSubview:_textFieldPassword];
     
-    //添加左右图片
+    //添加左图片
     UIImageView * imageViewUserName = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"3"]];
     imageViewUserName.frame = CGRectMake(0, 0, 40, 40);
     _textFieldUserName.leftView = imageViewUserName;
@@ -116,13 +118,15 @@
         [alert addAction: defaultAction];
         [self presentViewController: alert animated: YES completion:nil];
     }
+    NSLog(@"%@", _management.accoutMutableArray);
 }
 
 - (void)clickToLogin
 {
     [self.delegate getTextFieldUserName:_textFieldUserName.text];
     [self.delegate getTextFieldPassword:_textFieldPassword.text];
-
+    
+    [self.delegate2 getAccountArray:_management.accoutMutableArray];
     //back
     [self dismissViewControllerAnimated:YES completion:nil];
 }

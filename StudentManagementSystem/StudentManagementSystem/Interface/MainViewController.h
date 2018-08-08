@@ -9,5 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface MainViewController : UIViewController
+@property(nonatomic, strong)UITableView * tableView;
+
+@property(nonatomic, strong)UIButton * addStudentButton;
+@property(nonatomic, strong)UIButton * deleteStudentButton;
+@property(nonatomic, strong)UIButton * changeStudentButton;
+@property(nonatomic, strong)UIButton * searchStudentButton;
+
+@property(nonatomic, strong)UIButton * browseStudentButton;
 
 @end

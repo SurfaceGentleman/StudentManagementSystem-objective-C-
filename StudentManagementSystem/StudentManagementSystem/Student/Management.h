@@ -11,6 +11,7 @@
 #import "Account.h"
 
 @interface Management : NSObject
+<NSCopying>
 
 @property(nonatomic, strong)NSMutableArray * accoutMutableArray;
 @property(nonatomic, strong)NSMutableArray * studentMutableArray;
@@ -25,13 +26,13 @@
 
 //查询学生的资料
 //使用学号
-- (BOOL)getInformationOfTheStudentWithId:(NSString *)idStr;
+- (StudentInformation *)getInformationOfTheStudentWithId:(NSString *)idStr;
 //删除一个学生的信息
 - (BOOL)deleteStudentWithId:(NSString *)idStr;
 //添加一个学生的信息
 - (BOOL)addStudent:(StudentInformation *)newStudent;
 //修改一个学生的信息
-- (StudentInformation *)changeOnesInformation:(StudentInformation *)thisStudent;
+- (StudentInformation *)changeOnesInformation:(NSString *)idStr;
 
 //输出学生信息
 - (void)print:(StudentInformation *)student;

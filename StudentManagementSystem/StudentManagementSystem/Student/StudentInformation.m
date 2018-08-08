@@ -10,6 +10,16 @@
 
 @implementation StudentInformation
 
+-(id)copyWithZone:(NSZone *)zone
+{
+    StudentInformation * studentInformation = [[[self class] allocWithZone:zone] init];
+    studentInformation.nameStr = self.nameStr;
+    studentInformation.idStr = self.idStr;
+    studentInformation.classStr = self.classStr;
+    studentInformation.score = self.score;
+    return studentInformation;
+}
+
 - (id)init
 {
     if(self = [super init]) {

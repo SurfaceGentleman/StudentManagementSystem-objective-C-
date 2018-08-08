@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface StudentInformation : NSObject
+<NSCopying>
 
 @property(nonatomic, copy)NSString * nameStr;
 @property(nonatomic, copy)NSString * idStr;

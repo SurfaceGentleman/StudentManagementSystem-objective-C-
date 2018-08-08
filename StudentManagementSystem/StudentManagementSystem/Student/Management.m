@@ -10,6 +10,14 @@
 
 @implementation Management
 
+//-(id)copyWithZone:(NSZone *)zone
+//{
+//    Management * management = [[[self class] allocWithZone:zone] init];
+//    management.accoutMutableArray = [self.accoutMutableArray mutableCopy];
+//    management.studentMutableArray = [self.studentMutableArray mutableCopy];
+//    return management;
+//}
+
 - (id)init
 {
     if(self = [super init]) {
@@ -22,8 +30,8 @@
         StudentInformation * student2 = [StudentInformation new];
         [student2 setIdStr:@"05179047"];
         [student2 setScore:60];
-        [student2 setNameStr:@"王浩"];
-        [student2 setClassStr:@"微电子1702班"];
+        [student2 setNameStr:@"巨佬"];
+        [student2 setClassStr:@"计科1702班"];
         StudentInformation * student3 = [StudentInformation new];
         [student3 setIdStr:@"05179049"];
         [student3 setScore:80];
@@ -80,15 +88,31 @@
 }
 //获取学生数据
 //ID
-- (BOOL)getInformationOfTheStudentWithId:(NSString *)idStr
+- (StudentInformation *)getInformationOfTheStudentWithId:(NSString *)idStr
 {
     for (StudentInformation * temporaryStudentInformation in _studentMutableArray) {
         if (YES == [temporaryStudentInformation.idStr isEqualToString:idStr]) {
             [self print:temporaryStudentInformation];
-            return YES;
+            return temporaryStudentInformation;
         }
     }
-    return NO;
+    return nil;
+}
+
+- (StudentInformation *)changeOnesInformation:(NSString *)idStr
+{
+    StudentInformation * newStudentInformation = [StudentInformation new];
+    if (YES == [self studentInData:idStr]) {
+        for(StudentInformation *temporaryStudent in _studentMutableArray) {
+            if (YES == [idStr isEqualToString:temporaryStudent.idStr]) {
+                newStudentInformation.idStr = temporaryStudent.idStr;
+                newStudentInformation.nameStr = temporaryStudent.nameStr;
+                newStudentInformation.classStr = temporaryStudent.classStr;
+                return newStudentInformation;
+            }
+        }
+    }
+    return nil;
 }
 
 //输出学生信息

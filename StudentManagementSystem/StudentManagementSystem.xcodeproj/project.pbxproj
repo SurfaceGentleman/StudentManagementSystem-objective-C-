@@ -18,6 +18,14 @@
 		8E9FA9CC21193BDA0077AF0E /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E9FA9CB21193BDA0077AF0E /* RegisterViewController.m */; };
 		8E9FA9CE21193D8A0077AF0E /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9FA9CD21193D8A0077AF0E /* 3.png */; };
 		8E9FA9D021193D900077AF0E /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9FA9CF21193D900077AF0E /* 4.png */; };
+		8EA06B65211A843F000A74C3 /* AccountTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA06B64211A843F000A74C3 /* AccountTableViewCell.m */; };
+		8EA06B6C211A8EBA000A74C3 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA06B6B211A8EBA000A74C3 /* SearchViewController.m */; };
+		8EA06B6F211A8EC6000A74C3 /* ChangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA06B6E211A8EC6000A74C3 /* ChangeViewController.m */; };
+		8EA06B72211A8ED2000A74C3 /* DeleteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA06B71211A8ED2000A74C3 /* DeleteViewController.m */; };
+		8EA06B75211A8EDE000A74C3 /* AddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA06B74211A8EDE000A74C3 /* AddViewController.m */; };
+		8EA06B78211A91F2000A74C3 /* BrowseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA06B77211A91F2000A74C3 /* BrowseViewController.m */; };
+		8EA06B7A211A98AC000A74C3 /* 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EA06B79211A98AC000A74C3 /* 5.png */; };
+		8EA06B7D211AC436000A74C3 /* BrowseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA06B7C211AC436000A74C3 /* BrowseTableViewCell.m */; };
 		8EBEB9B62119BF40004B97B9 /* Management.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EBEB9B02119BF40004B97B9 /* Management.m */; };
 		8EBEB9B72119BF40004B97B9 /* StudentInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EBEB9B12119BF40004B97B9 /* StudentInformation.m */; };
 		8EBEB9B82119BF40004B97B9 /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EBEB9B22119BF40004B97B9 /* Account.m */; };
@@ -63,6 +71,21 @@
 		8E9FA9CB21193BDA0077AF0E /* RegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		8E9FA9CD21193D8A0077AF0E /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
 		8E9FA9CF21193D900077AF0E /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
+		8EA06B63211A843F000A74C3 /* AccountTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccountTableViewCell.h; sourceTree = "<group>"; };
+		8EA06B64211A843F000A74C3 /* AccountTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccountTableViewCell.m; sourceTree = "<group>"; };
+		8EA06B6A211A8EBA000A74C3 /* SearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		8EA06B6B211A8EBA000A74C3 /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		8EA06B6D211A8EC6000A74C3 /* ChangeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChangeViewController.h; sourceTree = "<group>"; };
+		8EA06B6E211A8EC6000A74C3 /* ChangeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangeViewController.m; sourceTree = "<group>"; };
+		8EA06B70211A8ED2000A74C3 /* DeleteViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeleteViewController.h; sourceTree = "<group>"; };
+		8EA06B71211A8ED2000A74C3 /* DeleteViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeleteViewController.m; sourceTree = "<group>"; };
+		8EA06B73211A8EDE000A74C3 /* AddViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddViewController.h; sourceTree = "<group>"; };
+		8EA06B74211A8EDE000A74C3 /* AddViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddViewController.m; sourceTree = "<group>"; };
+		8EA06B76211A91F2000A74C3 /* BrowseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrowseViewController.h; sourceTree = "<group>"; };
+		8EA06B77211A91F2000A74C3 /* BrowseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrowseViewController.m; sourceTree = "<group>"; };
+		8EA06B79211A98AC000A74C3 /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
+		8EA06B7B211AC436000A74C3 /* BrowseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrowseTableViewCell.h; sourceTree = "<group>"; };
+		8EA06B7C211AC436000A74C3 /* BrowseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrowseTableViewCell.m; sourceTree = "<group>"; };
 		8EBEB9B02119BF40004B97B9 /* Management.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Management.m; sourceTree = "<group>"; };
 		8EBEB9B12119BF40004B97B9 /* StudentInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentInformation.m; sourceTree = "<group>"; };
 		8EBEB9B22119BF40004B97B9 /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
@@ -123,6 +146,8 @@
 		8E9FA99121193A4D0077AF0E /* StudentManagementSystem */ = {
 			isa = PBXGroup;
 			children = (
+				8EA06B69211A8CE3000A74C3 /* ChildViewsController */,
+				8EA06B62211A840E000A74C3 /* cell */,
 				8E9FA9D521197C810077AF0E /* Student */,
 				8E9FA9D121193D9B0077AF0E /* images */,
 				8E9FA9D221197C490077AF0E /* Interface */,
@@ -158,6 +183,7 @@
 			children = (
 				8E9FA9CD21193D8A0077AF0E /* 3.png */,
 				8E9FA9CF21193D900077AF0E /* 4.png */,
+				8EA06B79211A98AC000A74C3 /* 5.png */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -190,6 +216,34 @@
 				8EBEB9B22119BF40004B97B9 /* Account.m */,
 			);
 			path = Student;
+			sourceTree = "<group>";
+		};
+		8EA06B62211A840E000A74C3 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				8EA06B63211A843F000A74C3 /* AccountTableViewCell.h */,
+				8EA06B64211A843F000A74C3 /* AccountTableViewCell.m */,
+				8EA06B7B211AC436000A74C3 /* BrowseTableViewCell.h */,
+				8EA06B7C211AC436000A74C3 /* BrowseTableViewCell.m */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		8EA06B69211A8CE3000A74C3 /* ChildViewsController */ = {
+			isa = PBXGroup;
+			children = (
+				8EA06B6A211A8EBA000A74C3 /* SearchViewController.h */,
+				8EA06B6B211A8EBA000A74C3 /* SearchViewController.m */,
+				8EA06B6D211A8EC6000A74C3 /* ChangeViewController.h */,
+				8EA06B6E211A8EC6000A74C3 /* ChangeViewController.m */,
+				8EA06B70211A8ED2000A74C3 /* DeleteViewController.h */,
+				8EA06B71211A8ED2000A74C3 /* DeleteViewController.m */,
+				8EA06B73211A8EDE000A74C3 /* AddViewController.h */,
+				8EA06B74211A8EDE000A74C3 /* AddViewController.m */,
+				8EA06B76211A91F2000A74C3 /* BrowseViewController.h */,
+				8EA06B77211A91F2000A74C3 /* BrowseViewController.m */,
+			);
+			path = ChildViewsController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,6 +352,7 @@
 				8E9FA99F21193A4E0077AF0E /* LaunchScreen.storyboard in Resources */,
 				8E9FA99C21193A4E0077AF0E /* Assets.xcassets in Resources */,
 				8E9FA99A21193A4D0077AF0E /* Main.storyboard in Resources */,
+				8EA06B7A211A98AC000A74C3 /* 5.png in Resources */,
 				8E9FA9D021193D900077AF0E /* 4.png in Resources */,
 				8E9FA9CE21193D8A0077AF0E /* 3.png in Resources */,
 			);
@@ -325,13 +380,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				8EBEB9B62119BF40004B97B9 /* Management.m in Sources */,
+				8EA06B78211A91F2000A74C3 /* BrowseViewController.m in Sources */,
+				8EA06B65211A843F000A74C3 /* AccountTableViewCell.m in Sources */,
 				8E9FA9A221193A4E0077AF0E /* main.m in Sources */,
 				8EBEB9B72119BF40004B97B9 /* StudentInformation.m in Sources */,
+				8EA06B7D211AC436000A74C3 /* BrowseTableViewCell.m in Sources */,
+				8EA06B75211A8EDE000A74C3 /* AddViewController.m in Sources */,
+				8EA06B6F211A8EC6000A74C3 /* ChangeViewController.m in Sources */,
 				8EBEB9BB2119CDE7004B97B9 /* MainViewController.m in Sources */,
 				8EBEB9BE2119D8D7004B97B9 /* AccountViewController.m in Sources */,
 				8E9FA99421193A4D0077AF0E /* AppDelegate.m in Sources */,
 				8EBEB9B82119BF40004B97B9 /* Account.m in Sources */,
 				8E9FA9C921193AE00077AF0E /* LoginViewController.m in Sources */,
+				8EA06B72211A8ED2000A74C3 /* DeleteViewController.m in Sources */,
+				8EA06B6C211A8EBA000A74C3 /* SearchViewController.m in Sources */,
 				8E9FA9CC21193BDA0077AF0E /* RegisterViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

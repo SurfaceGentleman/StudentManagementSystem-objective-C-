@@ -8,12 +8,17 @@
 
 #import "LoginViewController.h"
 #import "RegisterViewController.h"
+#import "AccountViewController.h"
+#import "MainViewController.h"
 
-@interface LoginViewController ()<ReturnTextDelegate>
+@interface LoginViewController ()
+<ReturnTextDelegate, ReturnAccountDelegate>
 
 @end
 
 @implementation LoginViewController
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -22,6 +27,7 @@
     
     //添加管理
     _management = [Management new];
+    
     _newsAccount = [Account new];
     
     //输入框
@@ -30,6 +36,7 @@
 
     _textFieldPassword = [[UITextField alloc] initWithFrame:CGRectMake(40, 350, 340, 40)];
     _textFieldPassword.backgroundColor = [UIColor whiteColor];
+    _textFieldPassword.secureTextEntry = YES;
     
     [self.view addSubview:_textFieldUserName];
     [self.view addSubview:_textFieldPassword];
@@ -53,7 +60,7 @@
     [_buttonLogin setTitle:@"登录" forState:UIControlStateNormal];
     [_buttonLogin setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     _buttonLogin.titleLabel.font = [UIFont systemFontOfSize:18];
-    [_buttonLogin addTarget:self action:@selector(clickToMain) forControlEvents:UIControlEventTouchUpInside];
+    [_buttonLogin addTarget:self action:@selector(clickToMain2) forControlEvents:UIControlEventTouchUpInside];
     //允许边界超出
     [_buttonLogin.layer setMasksToBounds:YES];
     //半径
@@ -102,13 +109,21 @@
 {
     RegisterViewController * registerViewController = [RegisterViewController new];
     registerViewController.delegate = self;
+    registerViewController.delegate2 = self;
     [self presentViewController:registerViewController animated:YES completion:nil];
+}
+
+- (void)getAccountArray:(NSMutableArray *)accountArray
+{
+    self.management.accoutMutableArray = [accountArray mutableCopy];
+    NSLog(@"2");
 }
 
 - (void)getTextFieldPassword:(NSString *)textPassword
 {
     self.textFieldPassword.text = textPassword;
     _newsAccount.passwordStr = textPassword;
+    NSLog(@"1");
 }
 
 - (void)getTextFieldUserName:(NSString *)textUserName
@@ -117,14 +132,47 @@
     _newsAccount.userNameStr = textUserName;
 }
 
+- (void)clickToMain2
+{
+    //添加分栏控制器与导航栏
+    MainViewController * mainViewController = [MainViewController new];
+    mainViewController.title = @"操作";
+    AccountViewController * accountViewController = [AccountViewController new];
+    accountViewController.title = @"账户";
+    _tbController = [[UITabBarController alloc] init];
+    UINavigationController * navigationMain = [[UINavigationController alloc] initWithRootViewController:mainViewController];
+    navigationMain.navigationBar.barTintColor = [UIColor colorWithRed:1.00 green:0.87 blue:0.00 alpha:1.00];
+    UINavigationController * navigationAccount =  [[UINavigationController alloc] initWithRootViewController:accountViewController];
+    navigationAccount.navigationBar.barTintColor = [UIColor colorWithRed:1.00 green:0.87 blue:0.00 alpha:1.00];
+    [navigationMain.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    [navigationAccount.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    
+    _tbController.viewControllers = @[navigationMain, navigationAccount];
+    [self presentViewController:_tbController animated:YES completion:nil];
+}
+
 - (void)clickToMain
 {
-    [_management addAccount:_newsAccount];
+    //[_management addAccount:_newsAccount];
+    NSLog(@"%@", _management.accoutMutableArray);
     for(Account * account in _management.accoutMutableArray) {
         if (YES == [_textFieldUserName.text isEqualToString:account.userNameStr]) {
             if (YES == [_textFieldPassword.text isEqualToString:account.passwordStr]) {
+                //添加分栏控制器与导航栏
                 MainViewController * mainViewController = [MainViewController new];
-                [self presentViewController:mainViewController animated:YES completion:nil];
+                mainViewController.title = @"操作";
+                AccountViewController * accountViewController = [AccountViewController new];
+                accountViewController.title = @"账户";
+                _tbController = [[UITabBarController alloc] init];
+                UINavigationController * navigationMain = [[UINavigationController alloc] initWithRootViewController:mainViewController];
+                navigationMain.navigationBar.barTintColor = [UIColor colorWithRed:1.00 green:0.87 blue:0.00 alpha:1.00];
+                UINavigationController * navigationAccount =  [[UINavigationController alloc] initWithRootViewController:accountViewController];
+                navigationAccount.navigationBar.barTintColor = [UIColor colorWithRed:1.00 green:0.87 blue:0.00 alpha:1.00];
+                [navigationMain.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+                [navigationAccount.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+                
+                _tbController.viewControllers = @[navigationMain, navigationAccount];
+                [self presentViewController:_tbController animated:YES completion:nil];
                 return;
             }
             else {
@@ -142,6 +190,7 @@
     UIAlertAction * defaultAction = [UIAlertAction actionWithTitle:@"返回" style:UIAlertActionStyleDefault handler:nil];
     [alert addAction: defaultAction];
     [self presentViewController: alert animated: YES completion:nil];
+    
 }
 
 - (void)didReceiveMemoryWarning {

@@ -17,6 +17,13 @@
 - (void) getTextFieldPassword:(NSString *)textPassword;
 @end
 
+@protocol ReturnAccountDelegate
+
+@required
+- (void)getAccountArray:(NSMutableArray *)accountArray;
+
+@end
+
 @interface RegisterViewController : UIViewController
 
 @property(nonatomic, strong)UITextField * textFieldUserName;
@@ -27,5 +34,7 @@
 @property(nonatomic, strong)Management * management;
 
 @property(nonatomic, strong)NSObject <ReturnTextDelegate> * delegate;
+
+@property(nonatomic, strong)NSObject <ReturnAccountDelegate> * delegate2;
 
 @end
