@@ -26,7 +26,7 @@
         self.idStr = @"0";
         self.nameStr = @"佚名";
         self.classStr = @"nil";
-        self.score = 0;
+        self.score = @"0";
     }
     return self;
 }                   

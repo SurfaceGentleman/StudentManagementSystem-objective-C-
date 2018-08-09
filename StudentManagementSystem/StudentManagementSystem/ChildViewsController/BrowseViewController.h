@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "Management.h"
+#import "MainViewController.h"
+
+@protocol ReturnAfterBrowsingArrayDelegate
+
+@required
+- (void)getAfterBrowsingArray:(NSMutableArray *)afterBrowsingStudentArray;
+@end
 
 @interface BrowseViewController : UIViewController
 
@@ -19,5 +26,8 @@
 @property(nonatomic, strong)NSMutableArray *studentClassMutableArray;
 @property(nonatomic, strong)NSMutableArray *studentIdMutableArray;
 @property(nonatomic, strong)NSMutableArray *studentScoreMutableArray;
+
+//协议
+@property(nonatomic, weak)NSObject <ReturnAfterBrowsingArrayDelegate> *browseDelegate;
 
 @end

@@ -15,13 +15,13 @@
     _management = [Management new];
     
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 15, 80, 20)];
+        _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 20, 80, 20)];
         [self.contentView addSubview:_nameLabel];
-        _classLabel = [[UILabel alloc] initWithFrame:CGRectMake(220, 15, 120, 20)];
+        _classLabel = [[UILabel alloc] initWithFrame:CGRectMake(220, 20, 160, 20)];
         [self.contentView addSubview:_classLabel];
-        _idLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 45, 120, 20)];
+        _idLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 55, 120, 20)];
         [self.contentView addSubview:_idLabel];
-        _scoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(220, 45, 120, 20)];
+        _scoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(220, 55, 160, 20)];
         [self.contentView addSubview:_scoreLabel];
     }
     return self;

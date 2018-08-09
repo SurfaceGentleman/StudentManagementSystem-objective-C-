@@ -24,19 +24,24 @@
         //添加学生
         StudentInformation * student1 = [StudentInformation new];
         [student1 setIdStr:@"05179048"];
-        [student1 setScore:98.3];
+        [student1 setScore:@"98.3"];
         [student1 setNameStr:@"王臻"];
         [student1 setClassStr:@"微电子1702班"];
         StudentInformation * student2 = [StudentInformation new];
         [student2 setIdStr:@"05179047"];
-        [student2 setScore:60];
+        [student2 setScore:@"60"];
         [student2 setNameStr:@"巨佬"];
         [student2 setClassStr:@"计科1702班"];
         StudentInformation * student3 = [StudentInformation new];
         [student3 setIdStr:@"05179049"];
-        [student3 setScore:80];
+        [student3 setScore:@"80"];
         [student3 setNameStr:@"权小伟"];
         [student3 setClassStr:@"测控1702班"];
+        StudentInformation * student4 = [StudentInformation new];
+        [student4 setIdStr:@"05179041"];
+        [student4 setScore:@"90"];
+        [student4 setNameStr:@"张弛"];
+        [student4 setClassStr:@"微电子1702"];
         //添加账户
         Account * account1 = [Account new];
         account1.userNameStr = @"1226568176";
@@ -50,6 +55,7 @@
         [_studentMutableArray addObject:student1];
         [_studentMutableArray addObject:student2];
         [_studentMutableArray addObject:student3];
+        [_studentMutableArray addObject:student4];
         //添加账户信息
         [_accoutMutableArray addObject:account1];
 
@@ -98,7 +104,7 @@
     }
     return nil;
 }
-
+//修改学生信息
 - (StudentInformation *)changeOnesInformation:(NSString *)idStr
 {
     StudentInformation * newStudentInformation = [StudentInformation new];
@@ -118,7 +124,7 @@
 //输出学生信息
 - (void)print:(StudentInformation *)student
 {
-    NSLog(@"姓名：%@， 学号：%@， 成绩：%g，班级：%@\n", student.nameStr, student.idStr, student.score, student.classStr);
+    NSLog(@"姓名：%@， 学号：%@， 成绩：%@，班级：%@\n", student.nameStr, student.idStr, student.score, student.classStr);
 }
 
 //查询账户名是否在资料中

@@ -15,6 +15,7 @@
 #import "BrowseViewController.h"
 
 @interface MainViewController ()
+<ReturnAfterChangingArrayDelegate, ReturnAfterDeletingArrayDelegate, ReturnAfterAddingArrayDelegate, ReturnAfterBrowsingArrayDelegate>
 
 @end
 
@@ -24,7 +25,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    Management *management = [Management new];
+    _management = [Management new];
     
     self.view.backgroundColor = [UIColor whiteColor];
     //添加提示文字
@@ -116,31 +117,69 @@
 - (void)clickToSearch
 {
     SearchViewController * searchViewController = [SearchViewController new];
+    searchViewController.management = [Management new];
+    searchViewController.management.studentMutableArray = [_management.studentMutableArray mutableCopy];
     [self.navigationController pushViewController:searchViewController animated:YES];
 }
 
 - (void)clickToAdd
 {
     AddViewController * addViewController = [AddViewController new];
+    addViewController.addDelegate = self;
+    addViewController.management = [Management new];
+    addViewController.management.studentMutableArray = [_management.studentMutableArray mutableCopy];
     [self.navigationController pushViewController:addViewController animated:YES];
 }
 
 - (void)clickToDelete
 {
     DeleteViewController * deleteViewController = [DeleteViewController new];
+    deleteViewController.delegateDelete = self;
+    deleteViewController.management = [Management new];
+    deleteViewController.management.studentMutableArray = [_management.studentMutableArray mutableCopy];
     [self.navigationController pushViewController:deleteViewController animated:YES];
 }
 
 - (void)clickToChange
 {
     ChangeViewController * changeViewController = [ChangeViewController new];
+    changeViewController.delegateChanging = self;
+    changeViewController.management = [Management new];
+    changeViewController.management.studentMutableArray = [_management.studentMutableArray mutableCopy];
     [self.navigationController pushViewController:changeViewController animated:YES];
 }
 
 - (void)clickToBrowse
 {
     BrowseViewController * browerViewController = [BrowseViewController new];
+    browerViewController.browseDelegate = self;
+    browerViewController.management = [Management new];
+    browerViewController.management.studentMutableArray = [_management.studentMutableArray mutableCopy];
     [self.navigationController pushViewController:browerViewController animated:YES];
+}
+
+- (void)getAfterChangingArray:(NSMutableArray *)afterChangingStudentArray
+{
+    self.management.studentMutableArray = [afterChangingStudentArray mutableCopy];
+    NSLog(@"修改后的数据已返回至主界面数组");
+}
+
+- (void)getAfterDeletingArray:(NSMutableArray *)afterDeletingStudentArray
+{
+    self.management.studentMutableArray = [afterDeletingStudentArray mutableCopy];
+    NSLog(@"删除后的数据已返回至主界面");
+}
+
+- (void)getAfterAddingArray:(NSMutableArray *)afterAddingStudentArray
+{
+    self.management.studentMutableArray = [afterAddingStudentArray mutableCopy];
+    NSLog(@"添加后的数据已返回至主界面");
+}
+
+- (void)getAfterBrowsingArray:(NSMutableArray *)afterBrowsingStudentArray
+{
+    self.management.studentMutableArray = [afterBrowsingStudentArray mutableCopy];
+    NSLog(@"浏览后的数据已返回至主界面");
 }
 
 - (void)didReceiveMemoryWarning {

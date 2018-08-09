@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Management.h"
+#import "MainViewController.h"
 
 @interface SearchViewController : UIViewController
 

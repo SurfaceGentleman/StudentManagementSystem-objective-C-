@@ -18,7 +18,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    _management = [Management new];
+    //_management = [Management new];
     
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -54,6 +54,57 @@
     //边框颜色
     [_searchButton.layer setBorderColor:[UIColor colorWithRed:1.00 green:0.87 blue:0.00 alpha:1.00].CGColor];
     [self.view addSubview:_searchButton];
+    
+    UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(clickToPop)];
+    leftBarButtonItem.tintColor = [UIColor whiteColor];
+    
+    self.navigationItem.leftBarButtonItem = leftBarButtonItem;
+}
+
+- (void)clickToPop
+{
+    [self.delegateDelete  getAfterDeletingArray:_management.studentMutableArray];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)clickToSearch
+{
+    
+    if (YES == [_management studentInData:_idTextField.text]) {
+        StudentInformation * willBeDeleteStudent = [[_management getInformationOfTheStudentWithId:_idTextField.text] copy];
+        //提示字符串
+        NSString * nameStr = [NSString stringWithFormat:@"姓名:%@", willBeDeleteStudent.nameStr];
+        NSString * classStr = [NSString stringWithFormat:@"班级:%@", willBeDeleteStudent.classStr ];
+        NSString * idStr = [NSString stringWithFormat:@"学号:%s", [willBeDeleteStudent.idStr UTF8String]];
+        NSString * scoreStr = [NSString stringWithFormat:@"成绩:%@", willBeDeleteStudent.score];
+        //添加提示信息
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"删除成功" message:@"该学生已被删除" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction * name = [UIAlertAction actionWithTitle:nameStr style:UIAlertActionStyleDefault handler:nil];
+        
+        UIAlertAction * class = [UIAlertAction actionWithTitle:classStr style:UIAlertActionStyleDefault handler:nil];
+        UIAlertAction * id = [UIAlertAction actionWithTitle:idStr style:UIAlertActionStyleDefault handler:nil];
+        
+        UIAlertAction * score = [UIAlertAction actionWithTitle:scoreStr style:UIAlertActionStyleDefault handler:nil];
+        
+        UIAlertAction * backAction = [UIAlertAction actionWithTitle:@"返回" style:UIAlertActionStyleDestructive handler:nil];
+        [alert addAction: name];
+        [alert addAction:class];
+        [alert addAction:id];
+        [alert addAction:score];
+        [alert addAction:backAction];
+        [self presentViewController: alert animated: YES completion:nil];
+        [_management deleteStudentWithId:_idTextField.text];
+        _idTextField.text = nil;
+    }
+    else {
+        //添加提示信息
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"删除失败" message:@"该学号不存在" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction * defaultAction = [UIAlertAction actionWithTitle:@"返回" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction: defaultAction];
+        [self presentViewController: alert animated: YES completion:nil];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

@@ -15,7 +15,7 @@
 @property(nonatomic, copy)NSString * idStr;
 @property(nonatomic, copy)NSString * classStr;
 
-@property(nonatomic, assign)double score;
+@property(nonatomic, copy)NSString * score;
 
 //初始化
 - (id)init;

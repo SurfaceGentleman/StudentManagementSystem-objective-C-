@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "Management.h"
+#import "MainViewController.h"
+
+@protocol ReturnAfterDeletingArrayDelegate
+
+@required
+- (void)getAfterDeletingArray:(NSMutableArray *)afterDeletingStudentArray;
+
+@end
 
 @interface DeleteViewController : UIViewController
 
@@ -17,5 +25,8 @@
 @property(nonatomic, strong)UIButton * searchButton;
 
 @property(nonatomic, strong)Management * management;
+
+//协议
+@property(nonatomic, strong)NSObject <ReturnAfterDeletingArrayDelegate> *delegateDelete;
 
 @end

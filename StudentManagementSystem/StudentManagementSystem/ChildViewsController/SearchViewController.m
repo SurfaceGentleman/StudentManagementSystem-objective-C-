@@ -18,7 +18,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    _management = [Management new];
+    //_management = [Management new];
     
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -55,6 +55,21 @@
     [_searchButton.layer setBorderColor:[UIColor colorWithRed:1.00 green:0.87 blue:0.00 alpha:1.00].CGColor];
     [self.view addSubview:_searchButton];
     
+    UIButton * btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    btn.frame = CGRectMake(0, 0, 20, 20);
+    [btn setImage:[UIImage imageNamed:@"arrow-left-2"] forState:UIControlStateNormal];
+    btn.tintColor = [UIColor whiteColor];
+    [btn addTarget:self action:@selector(clickToPop)forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(clickToPop)];
+    leftBarButtonItem.tintColor = [UIColor whiteColor];
+    
+    self.navigationItem.leftBarButtonItem = leftBarButtonItem;
+}
+
+- (void)clickToPop
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)clickToSearch
@@ -66,7 +81,7 @@
         NSString * nameStr = [NSString stringWithFormat:@"姓名:%@", studentInformation.nameStr];
         NSString * classStr = [NSString stringWithFormat:@"班级:%@", studentInformation.classStr ];
         NSString * idStr = [NSString stringWithFormat:@"学号:%s", [studentInformation.idStr UTF8String]];
-        NSString * scoreStr = [NSString stringWithFormat:@"成绩:%g", studentInformation.score];
+        NSString * scoreStr = [NSString stringWithFormat:@"成绩:%@", studentInformation.score];
         //添加提示信息
         UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"查询成功" message:@"下面是该学生的所有资料" preferredStyle:UIAlertControllerStyleAlert];
         
