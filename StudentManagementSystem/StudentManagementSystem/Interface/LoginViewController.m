@@ -103,6 +103,8 @@
     labelAuthor.frame = CGRectMake(220, 650, 200, 30);
     [self.view addSubview:labelAuthor];
     
+    
+    
 }
 
 - (void)clickToRegister
@@ -147,7 +149,19 @@
     [navigationMain.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     [navigationAccount.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
+    UITabBarItem * tabBarInformation = [UITabBarItem new];
+    //tabBarInformation.image = [[UIImage imageNamed:@"文件夹"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    tabBarInformation.image = [[UIImage imageNamed:@"笔记本"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    mainViewController.tabBarItem = tabBarInformation;
+    tabBarInformation.title = @"信息";
+    
+    UITabBarItem * tabBarAccount = [UITabBarItem new];
+    tabBarAccount.image = [[UIImage imageNamed:@"铅笔"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    accountViewController.tabBarItem = tabBarAccount;
+    tabBarAccount.title = @"账户";
+    
     _tbController.viewControllers = @[navigationMain, navigationAccount];
+    _tbController.tabBar.tintColor = [UIColor colorWithRed:0.23 green:0.22 blue:0.25 alpha:1.00];
     [self presentViewController:_tbController animated:YES completion:nil];
 }
 
@@ -191,6 +205,20 @@
     [alert addAction: defaultAction];
     [self presentViewController: alert animated: YES completion:nil];
     
+}
+
+//点击return 按钮 去掉
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+//点击屏幕空白处去掉键盘
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    //[self.textName resignFirstResponder];
+    //[self.textSummary resignFirstResponder];
+    [self.view endEditing:YES];
 }
 
 - (void)didReceiveMemoryWarning {

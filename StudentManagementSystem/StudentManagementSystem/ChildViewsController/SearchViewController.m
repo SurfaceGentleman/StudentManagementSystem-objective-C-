@@ -31,7 +31,7 @@
     //输入框
     _idTextField = [[UITextField alloc] initWithFrame:CGRectMake(40, 280, 340, 40)];
     _idTextField.backgroundColor = [UIColor colorWithRed:0.93 green:0.93 blue:0.94 alpha:1.00];
-    _idTextField.placeholder = @"请输入您的学号";
+    _idTextField.placeholder = @"请输入8位正整数学号";
     //添加左图片
     UIImageView * imageViewUserName = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"3"]];
     imageViewUserName.frame = CGRectMake(0, 0, 40, 40);
@@ -74,7 +74,15 @@
 
 - (void)clickToSearch
 {
-    if (YES == [_management studentInData:_idTextField.text]) {
+    if (_idTextField.text.length != 8 || NO == [self isPureFloat:_idTextField.text]) {
+        //添加提示信息
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"查询失败" message:@"学号必须是8位十进制正整数" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction * defaultAction = [UIAlertAction actionWithTitle:@"返回" style:UIAlertActionStyleDestructive handler:nil];
+        [alert addAction: defaultAction];
+        [self presentViewController: alert animated: YES completion:nil];
+    }
+    else if (YES == [_management studentInData:_idTextField.text]) {
         StudentInformation * studentInformation = [[_management getInformationOfTheStudentWithId:_idTextField.text] copy];
         
         //提示字符串
@@ -107,6 +115,27 @@
         [alert addAction: defaultAction];
         [self presentViewController: alert animated: YES completion:nil];
     }
+}
+
+//浮点形判断(整形/浮点型等数字均会返回YES,其他为no):
+- (BOOL)isPureFloat:(NSString *)string{
+    NSScanner* scan = [NSScanner scannerWithString:string];
+    float val;
+    return [scan scanFloat:&val] && [scan isAtEnd];
+}
+
+//点击return 按钮 去掉
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+//点击屏幕空白处去掉键盘
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    //[self.textName resignFirstResponder];
+    //[self.textSummary resignFirstResponder];
+    [self.view endEditing:YES];
 }
 
 - (void)didReceiveMemoryWarning {

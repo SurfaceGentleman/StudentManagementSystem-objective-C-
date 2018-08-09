@@ -26,10 +26,12 @@
     //输入框
     _textFieldUserName = [[UITextField alloc] initWithFrame:CGRectMake(40, 300, 340, 40)];
     _textFieldUserName.backgroundColor = [UIColor whiteColor];
+    _textFieldUserName.placeholder = @"请输入您要注册的账号(6-14位长度)";
     
     _textFieldPassword = [[UITextField alloc] initWithFrame:CGRectMake(40, 350, 340, 40)];
     _textFieldPassword.backgroundColor = [UIColor whiteColor];
     _textFieldPassword.secureTextEntry = YES;
+    _textFieldPassword.placeholder = @"请输入您的密码(6-14位长度)";
     
     [self.view addSubview:_textFieldUserName];
     [self.view addSubview:_textFieldPassword];
@@ -101,7 +103,31 @@
     Account * newAccount = [Account new];
     newAccount.userNameStr = _textFieldUserName.text;
     newAccount.passwordStr = _textFieldPassword.text;
-    if (NO == [_management isAccountInData:_textFieldUserName.text]) {
+    if (_textFieldUserName.text.length == 0 || _textFieldPassword.text.length == 0) {
+        //添加提示信息
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"注册失败" message:@"账户名或密码不能为空" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction * defaultAction = [UIAlertAction actionWithTitle:@"返回" style:UIAlertActionStyleDestructive handler:nil];
+        [alert addAction: defaultAction];
+        [self presentViewController: alert animated: YES completion:nil];
+    }
+    else if (_textFieldPassword.text.length < 6 || _textFieldPassword.text.length > 14 || _textFieldUserName.text.length < 6 || _textFieldUserName.text.length > 14) {
+        //添加提示信息
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"注册失败" message:@"账户名或密码格式有误" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction * defaultAction = [UIAlertAction actionWithTitle:@"返回" style:UIAlertActionStyleDestructive handler:nil];
+        [alert addAction: defaultAction];
+        [self presentViewController: alert animated: YES completion:nil];
+    }
+    else if (YES == [self isHaveEmptyString:_textFieldPassword.text] || YES == [self isHaveEmptyString:_textFieldUserName.text]) {
+        //添加提示信息
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"注册失败" message:@"信息中不能有空格" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction * defaultAction = [UIAlertAction actionWithTitle:@"返回" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction: defaultAction];
+        [self presentViewController: alert animated: YES completion:nil];
+    }
+    else if (NO == [_management isAccountInData:_textFieldUserName.text]) {
         [_management addAccount:newAccount];
         //添加提示信息
         UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"注册成功" message:@"注册已成功" preferredStyle:UIAlertControllerStyleAlert];
@@ -129,6 +155,42 @@
     [self.delegate2 getAccountArray:_management.accoutMutableArray];
     //back
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+//判断字符串是否有空格
+- (BOOL)isHaveEmptyString:(NSString *) string {
+    NSRange range = [string rangeOfString:@" "];
+    if (range.location != NSNotFound) {
+        return YES;
+    }
+    else {
+        return NO;
+    }
+}
+
+//判断字符串是否有数字
+- (BOOL)isHaveNumberString:(NSString *)string {
+    const char * str = [string UTF8String];
+    for (int i = 0; i < string.length; i++) {
+        if (0 <= str[i] && str[i] <= 9) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+//点击return 按钮 去掉
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+//点击屏幕空白处去掉键盘
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    //[self.textName resignFirstResponder];
+    //[self.textSummary resignFirstResponder];
+    [self.view endEditing:YES];
 }
 
 - (void)didReceiveMemoryWarning {

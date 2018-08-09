@@ -37,4 +37,7 @@
 //协议
 @property(nonatomic, weak)NSObject <ReturnAfterAddingArrayDelegate>* addDelegate;
 
+//浮点形判断(整形/浮点型等数字均会返回YES,其他为no):
+- (BOOL)isPureFloat:(NSString *)string;
+
 @end

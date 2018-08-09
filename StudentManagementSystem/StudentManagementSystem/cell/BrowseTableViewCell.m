@@ -15,13 +15,13 @@
     _management = [Management new];
     
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 20, 80, 20)];
+        _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 20, 200, 20)];
         [self.contentView addSubview:_nameLabel];
-        _classLabel = [[UILabel alloc] initWithFrame:CGRectMake(220, 20, 160, 20)];
+        _classLabel = [[UILabel alloc] initWithFrame:CGRectMake(240, 20, 160, 20)];
         [self.contentView addSubview:_classLabel];
-        _idLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 55, 120, 20)];
+        _idLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 55, 160, 20)];
         [self.contentView addSubview:_idLabel];
-        _scoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(220, 55, 160, 20)];
+        _scoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(240, 55, 160, 20)];
         [self.contentView addSubview:_scoreLabel];
     }
     return self;
@@ -30,25 +30,6 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    
-//    _studentNameMutableArray = [NSMutableArray new];
-//    _studentClassMutableArray = [NSMutableArray new];
-//    _studentIdMutableArray = [NSMutableArray new];
-//    _studentScoreMutableArray = [NSMutableArray new];
-//
-//
-//    for (StudentInformation *temporaryStudent in _management.studentMutableArray) {
-//        [_studentNameMutableArray addObject:temporaryStudent.nameStr];
-//        [_studentClassMutableArray addObject:temporaryStudent.classStr];
-//
-//        NSString *scoreStr = [NSString stringWithFormat:@"%g", temporaryStudent.score];
-//        [_studentScoreMutableArray addObject:scoreStr];
-//        [_studentIdMutableArray addObject:temporaryStudent.idStr];
-//    }
-    
-//    NSString *classStr = [NSString stringWithFormat:@"%@", _studentInformationAr];
-//    NSString *idStr = [NSString stringWithFormat:@"%@", _management.studentMutableArray[0]];
-//    NSString *scoreStr = [NSString stringWithFormat:@"%g", _management.studentMutableArray[0]]
     
     //标签
     _nameLabel.textColor = [UIColor blackColor];

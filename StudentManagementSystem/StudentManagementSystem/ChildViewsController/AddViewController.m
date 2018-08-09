@@ -32,16 +32,16 @@
     //输入框
     _idTextField = [[UITextField alloc] initWithFrame:CGRectMake(40, 270, 340, 40)];
     _idTextField.backgroundColor = [UIColor colorWithRed:0.93 green:0.93 blue:0.94 alpha:1.00];
-    _idTextField.placeholder = @"请输入该学生的学号";
+    _idTextField.placeholder = @"请输入该学生的8位正整数学号";
     _nameTextField = [[UITextField alloc] initWithFrame:CGRectMake(40, 210, 340, 40)];
     _nameTextField.backgroundColor = [UIColor colorWithRed:0.93 green:0.93 blue:0.94 alpha:1.00];
-    _nameTextField.placeholder = @"请输入该学生的姓名";
+    _nameTextField.placeholder = @"请输入该学生的中文姓名";
     _classTextField = [[UITextField alloc] initWithFrame:CGRectMake(40, 330, 340, 40)];
     _classTextField.backgroundColor = [UIColor colorWithRed:0.93 green:0.93 blue:0.94 alpha:1.00];
     _classTextField.placeholder = @"请输入该学生的班级";
     _scoreTextField = [[UITextField alloc] initWithFrame:CGRectMake(40, 390, 340, 40)];
     _scoreTextField.backgroundColor = [UIColor colorWithRed:0.93 green:0.93 blue:0.94 alpha:1.00];
-    _scoreTextField.placeholder = @"请输入该学生的成绩";
+    _scoreTextField.placeholder = @"请输入该学生的成绩0-100";
     
     //添加左图片
     UIImageView * imageViewId = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"手机"]];
@@ -96,9 +96,43 @@
 
 - (void)clickToAdd
 {
-    if (YES == [_management studentInData:_idTextField.text]) {
+    float floatString = [_scoreTextField.text floatValue];
+    if (_idTextField.text.length == 0 || _nameTextField.text.length == 0 || _classTextField.text.length == 0 || _scoreTextField.text.length == 0 || YES == [self isPureFloat:_nameTextField.text] || YES == [self isPureFloat:_classTextField.text] || YES == [self isHaveEmptyString:_nameTextField.text] || YES == [self isHaveEmptyString:_classTextField.text]){
         //添加提示信息
-        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"添加失败" message:@"该学号已存在" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"添加失败" message:@"请检查填写信息是否有误(信息中不能出现空格)" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction * defaultAction = [UIAlertAction actionWithTitle:@"返回" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction: defaultAction];
+        [self presentViewController: alert animated: YES completion:nil];
+    }
+
+    else if(8 != _idTextField.text.length) {
+        //添加提示信息
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"添加失败" message:@"学号必须为8位" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction * defaultAction = [UIAlertAction actionWithTitle:@"返回" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction: defaultAction];
+        [self presentViewController: alert animated: YES completion:nil];
+    }
+    else if (YES == [_management studentInData:_idTextField.text] || NO == [self isPureFloat:_scoreTextField.text] || NO == [self isPureFloat:_idTextField.text]) {
+        //添加提示信息
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"添加失败" message:@"学号或分数格式不对" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction * defaultAction = [UIAlertAction actionWithTitle:@"返回" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction: defaultAction];
+        [self presentViewController: alert animated: YES completion:nil];
+    }
+    else if (NO == [self isChineseInString:_nameTextField.text]) {
+        //添加提示信息
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"添加失败" message:@"姓名必须为中文" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction * defaultAction = [UIAlertAction actionWithTitle:@"返回" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction: defaultAction];
+        [self presentViewController: alert animated: YES completion:nil];
+    }
+    else if (floatString > 100 || floatString < 0) {
+        //添加提示信息
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"添加失败" message:@"成绩必须为0-100" preferredStyle:UIAlertControllerStyleAlert];
         
         UIAlertAction * defaultAction = [UIAlertAction actionWithTitle:@"返回" style:UIAlertActionStyleDefault handler:nil];
         [alert addAction: defaultAction];
@@ -141,9 +175,67 @@
     }
 }
 
+//判断字符串是否有空格
+
+- (BOOL)isHaveEmptyString:(NSString *) string {
+    NSRange range = [string rangeOfString:@" "];
+    if (range.location != NSNotFound) {
+        return YES;
+    }
+    else {
+        return NO;
+    }
+}
+//判断字符串是否有数字
+- (BOOL)isHaveNumberString:(NSString *)string {
+    const char * str = [string UTF8String];
+    for (int i = 0; i < string.length; i++) {
+        if (0 <= str[i] && str[i] <= 9) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+//浮点形判断(整形/浮点型等数字均会返回YES,其他为no):
+- (BOOL)isPureFloat:(NSString *)string{
+    NSScanner* scan = [NSScanner scannerWithString:string];
+    float val;
+    return [scan scanFloat:&val] && [scan isAtEnd];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+//判断是否为汉字
+- (BOOL)isChineseInString:(NSString*)str {
+    int count = 0;
+    for (int i=0; i<str.length; i++) {
+        unichar ch = [str characterAtIndex:i];
+        if (0x4E00 <= ch  && ch <= 0x9FA5) {
+            count++;
+        }
+    }
+    if (count == str.length) {
+        return YES;
+    }
+    return NO;
+}
+
+//点击return 按钮 去掉
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+//点击屏幕空白处去掉键盘
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    //[self.textName resignFirstResponder];
+    //[self.textSummary resignFirstResponder];
+    [self.view endEditing:YES];
 }
 
 /*
